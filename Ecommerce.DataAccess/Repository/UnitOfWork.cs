@@ -10,20 +10,22 @@ namespace Ecommerce.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext _db;
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db) 
         {
-            this.db = db;
-            Category = new CategoryRepository(this.db);
-            Product = new ProductRepository(this.db);
+            _db = db;
+            Category = new CategoryRepository(_db);
+            Product = new ProductRepository(_db);
+            Company = new CompanyRepository(_db);
         }
 
         public void Save()
         {
-            db.SaveChanges();
+            _db.SaveChanges();
         }
     }
 }
