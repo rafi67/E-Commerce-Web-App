@@ -18,7 +18,13 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.container-bottom {
+    margin-bottom: 5%;
+}
 
+.img-height {
+    height: 400px;
+}
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
