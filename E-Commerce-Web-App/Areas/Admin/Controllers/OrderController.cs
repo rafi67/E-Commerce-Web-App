@@ -176,7 +176,6 @@ namespace E_Commerce_Web_App.Areas.Admin.Controllers
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
 
-            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.OrderHeaderId });
         }
 
         public IActionResult PaymentConfirmation(int orderHeaderId)
