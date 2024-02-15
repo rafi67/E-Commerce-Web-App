@@ -40,7 +40,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("categories");
+                    b.ToTable("categories", (string)null);
 
                     b.HasData(
                         new
@@ -92,7 +92,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasKey("CompanyId");
 
-                    b.ToTable("companies");
+                    b.ToTable("companies", (string)null);
 
                     b.HasData(
                         new
@@ -156,7 +156,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("orderDetails");
+                    b.ToTable("orderDetails", (string)null);
                 });
 
             modelBuilder.Entity("Ecommerce.Models.Models.OrderHeader", b =>
@@ -232,7 +232,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("orderHeaders");
+                    b.ToTable("orderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("Ecommerce.Models.Models.Product", b =>
@@ -281,7 +281,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("products");
+                    b.ToTable("products", (string)null);
 
                     b.HasData(
                         new
@@ -394,7 +394,7 @@ namespace Ecommerce.DataAccess.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("shoppingCarts");
+                    b.ToTable("shoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

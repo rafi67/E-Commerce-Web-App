@@ -173,6 +173,8 @@ namespace E_Commerce_Web_App.Areas.Customer.Controllers
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
                 }
+
+                HttpContext.Session.Clear();
             }
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
@@ -214,10 +216,11 @@ namespace E_Commerce_Web_App.Areas.Customer.Controllers
 
         public IActionResult Minus(int cartId)
         {
-            var cardFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingId == cartId);
+            var cardFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingId == cartId, tracked: true);
             if(cardFromDb.Count<=1) 
             {
                 _unitOfWork.ShoppingCart.Remove(cardFromDb);
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cardFromDb.ApplicationUserId).Count() - 1);
             }
             else
             {
@@ -230,8 +233,10 @@ namespace E_Commerce_Web_App.Areas.Customer.Controllers
 
         public IActionResult Remove(int cartId)
         {
-            var cardFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingId == cartId);
+            var cardFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingId == cartId, tracked:true);
             _unitOfWork.ShoppingCart.Remove(cardFromDb);
+            HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart
+                .GetAll(u => u.ApplicationUserId == cardFromDb.ApplicationUserId).Count() - 1);
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
