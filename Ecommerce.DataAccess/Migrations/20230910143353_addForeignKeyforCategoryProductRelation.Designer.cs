@@ -15,7 +15,7 @@ namespace Ecommerce.DataAccess.Migrations
     partial class addForeignKeyforCategoryProductRelation
     {
         /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        /*protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,6 +202,6 @@ namespace Ecommerce.DataAccess.Migrations
                     b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
-        }
+        }*/
     }
 }

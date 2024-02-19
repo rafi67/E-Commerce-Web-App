@@ -12,7 +12,7 @@ namespace Ecommerce.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
+           /* migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
                 table: "products",
                 type: "int",
@@ -90,7 +90,7 @@ namespace Ecommerce.DataAccess.Migrations
 
             migrationBuilder.DropColumn(
                 name: "CategoryId",
-                table: "products");
+                table: "products");*/
         }
     }
 }

@@ -77,6 +77,9 @@ namespace Ecommerce.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -106,19 +109,97 @@ namespace Ecommerce.DataAccess.Migrations
                     b.ToTable("products");
 
                     b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Author = "Billy Spark",
-                            Description = "Praesent vitae sodales libero.",
-                            ISBN = "SWD9999001",
-                            ListPrice = 99.0,
-                            Price = 90.0,
-                            Price100 = 80.0,
-                            Price50 = 85.0,
-                            Title = "Fortune of Time"
-                        });
-                });
+                       new
+                       {
+                           ProductId = 1,
+                           Author = "Billy Spark",
+                           CategoryId = 1,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "SWD9999001",
+                           ListPrice = 99.0,
+                           Price = 90.0,
+                           Price100 = 80.0,
+                           Price50 = 85.0,
+                           Title = "Fortune of Time"
+                       },
+                       new
+                       {
+                           ProductId = 2,
+                           Author = "Nancy Hoover",
+                           CategoryId = 1,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "CAW777777701",
+                           ListPrice = 40.0,
+                           Price = 30.0,
+                           Price100 = 20.0,
+                           Price50 = 25.0,
+                           Title = "Dark Skies"
+                       },
+                       new
+                       {
+                           ProductId = 3,
+                           Author = "Julian Button",
+                           CategoryId = 1,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "RIT05555501",
+                           ListPrice = 55.0,
+                           Price = 50.0,
+                           Price100 = 35.0,
+                           Price50 = 40.0,
+                           Title = "Vanish in the Sunset"
+                       },
+                       new
+                       {
+                           ProductId = 4,
+                           Author = "Abby Muscles",
+                           CategoryId = 2,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "WS3333333301",
+                           ListPrice = 70.0,
+                           Price = 65.0,
+                           Price100 = 55.0,
+                           Price50 = 60.0,
+                           Title = "Cotton Candy"
+                       },
+                       new
+                       {
+                           ProductId = 5,
+                           Author = "Ron Parker",
+                           CategoryId = 2,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "SOTJ1111111101",
+                           ListPrice = 30.0,
+                           Price = 27.0,
+                           Price100 = 20.0,
+                           Price50 = 25.0,
+                           Title = "Rock in the Ocean"
+                       },
+                       new
+                       {
+                           ProductId = 6,
+                           Author = "Laura Phantom",
+                           CategoryId = 3,
+                           Description = "Praesent vitae sodales libero.",
+                           ISBN = "FOT000000001",
+                           ListPrice = 25.0,
+                           Price = 23.0,
+                           Price100 = 20.0,
+                           Price50 = 22.0,
+                           Title = "Leaves and Wonders"
+                       });
+            });
+
+            modelBuilder.Entity("Ecommerce.Models.Models.Product", b =>
+            {
+                b.HasOne("Ecommerce.Models.Models.Category", "Category")
+                    .WithMany()
+                    .HasForeignKey("CategoryId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Category");
+            });
+
 #pragma warning restore 612, 618
         }
     }
